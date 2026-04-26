@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Private Gym — персональный зал в аренду | Уфа, Черниковка</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: брутальные шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #040404;
+            color: #e8e8e8;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .logo-text, .nav-links a, .btn, .price-card .price {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.02em;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Новый акцентный цвет — брутальный оранжево-красный */
+        :root {
+            --accent: #E85D04;
+            --accent-dark: #BB3E03;
+            --accent-glow: rgba(232, 93, 4, 0.25);
+            --dark-bg: #040404;
+            --card-bg: #0f0f0f;
+            --border-gray: #222222;
+        }
+
+        .accent-text {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 14px 36px;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(232, 93, 4, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(232, 93, 4, 0.5);
+        }
+
+        /* Header */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid var(--border-gray);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .logo-icon {
+            background: var(--accent);
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(5deg);
+            box-shadow: 0 0 0 2px rgba(232, 93, 4, 0.4);
+        }
+        .logo-icon i {
+            font-size: 28px;
+            color: #000;
+            transform: rotate(-5deg);
+        }
+        .logo-text {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .logo-text span {
+            color: var(--accent);
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0 100px;
+            position: relative;
+            background: radial-gradient(circle at 70% 20%, rgba(232,93,4,0.12) 0%, rgba(0,0,0,0) 70%);
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            max-width: 850px;
+            text-transform: uppercase;
+        }
+        .hero .highlight {
+            color: var(--accent);
+            border-bottom: 4px solid var(--accent);
+            display: inline-block;
+        }
+        .hero .new-utp {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 20px;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #fff 30%, var(--accent) 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #bbb;
+            margin: 25px 0 20px;
+            max-width: 600px;
+        }
+        .hero-badge {
+            background: rgba(232,93,4,0.15);
+            padding: 8px 18px;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 600;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(232,93,4,0.5);
+            backdrop-filter: blur(2px);
+        }
+
+        /* Секции */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-gray);
+            position: relative;
+        }
+        .section-bg-dark {
+            background: #080808;
+            background-image: repeating-linear-gradient(45deg, rgba(232,93,4,0.02) 0px, rgba(232,93,4,0.02) 2px, transparent 2px, transparent 8px);
+        }
+        .section-title {
+            font-size: 2.7rem;
+            font-weight: 700;
+            margin-bottom: 56px;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Oswald', sans-serif;
+        }
+        .section-title span {
+            color: var(--accent);
+        }
+        
+        /* Карточки проблем */
+        .cards-3 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+        }
+        .card {
+            background: var(--card-bg);
+            padding: 36px 28px;
+            border-radius: 28px;
+            flex: 1;
+            min-width: 260px;
+            border: 1px solid #2a2a2a;
+            transition: 0.25s ease;
+            backdrop-filter: blur(2px);
+        }
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-6px);
+        }
+        .card i {
+            font-size: 2.8rem;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+        .card p {
+            color: #aaa;
+            line-height: 1.4;
+        }
+
+        /* Как работает (шаги) */
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .step-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            background: #0c0c0c;
+            padding: 32px 20px;
+            border-radius: 32px;
+            border: 1px solid #2a2a2a;
+            transition: 0.2s;
+        }
+        .step-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        .step-num {
+            width: 56px;
+            height: 56px;
+            background: var(--accent);
+            color: black;
+            font-weight: 800;
+            font-size: 1.8rem;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-family: 'Oswald', sans-serif;
+        }
+        .step-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        /* Оборудование: брутальные карточки */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 28px;
+        }
+        .equip-card {
+            background: linear-gradient(145deg, #111111 0%, #0a0a0a 100%);
+            border-radius: 30px;
+            padding: 32px 24px;
+            text-align: center;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s;
+        }
+        .equip-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        .equip-icon {
+            font-size: 3.2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        .equip-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .equip-card p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        /* Цены */
+        .price-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .price-card {
+            background: #0c0c0c;
+            border-radius: 32px;
+            padding: 40px 28px;
+            width: 280px;
+            text-align: center;
+            border: 1px solid #2a2a2a;
+            transition: 0.3s;
+        }
+        .price-card:hover {
+            border-color: var(--accent);
+            transform: scale(1.02);
+        }
+        .price-card .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 20px 0 8px;
+            color: var(--accent);
+        }
+        .price-card small {
+            color: #aaa;
+        }
+
+        /* B2B блок */
+        .b2b-block {
+            background: linear-gradient(135deg, #0f0a07 0%, #080808 100%);
+            border-radius: 36px;
+            padding: 48px 40px;
+            border: 1px solid var(--accent);
+            margin-top: 20px;
+            box-shadow: 0 8px 24px rgba(232,93,4,0.15);
+        }
+
+        /* Факты */
+        .fact-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 40px;
+            text-align: center;
+        }
+        .fact-item {
+            flex: 1;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .fact-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        /* Карта / адрес */
+        .map-card {
+            background: #0c0c0c;
+            border-radius: 32px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid #2a2a2a;
+            position: relative;
+            overflow: hidden;
+        }
+        .map-card i {
+            font-size: 48px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        /* Форма */
+        form {
+            max-width: 580px;
+            margin: 0 auto;
+            background: #0f0f0f;
+            padding: 42px;
+            border-radius: 36px;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.5);
+        }
+        input, select {
+            width: 100%;
+            padding: 16px 20px;
+            margin: 12px 0;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        footer {
+            padding: 48px 0;
+            text-align: center;
+            color: #777;
+        }
+
+        @media (max-width: 780px) {
+            .hero h1 { font-size: 2.4rem; }
+            .section-title { font-size: 2rem; }
+            .navbar { flex-direction: column; text-align: center; }
+            .hero .new-utp { font-size: 1.2rem; }
+            .card, .step-item, .equip-card { padding: 24px 18px; }
+            .b2b-block { padding: 32px 24px; }
+            form { padding: 28px; }
+        }
+
+        .small-text {
+            color: #888;
+            font-size: 0.85rem;
+        }
+        .floating-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
+        }
+        .floating-btn .btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            box-shadow: 0 6px 18px rgba(232,93,4,0.5);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="navbar">
+        <div class="logo">
+            <div class="logo-icon"><i class="fas fa-dumbbell"></i></div>
+            <div class="logo-text">PRIVATE<span>GYM</span></div>
+        </div>
+        <div class="nav-links">
+            <a href="#about">О нас</a>
+            <a href="#how-it-works">Как работает</a>
+            <a href="#prices">Цены</a>
+            <a href="#b2b">Тренерам</a>
+            <a href="#booking">Бронировать</a>
+        </div>
+    </div>
+</div>
+
+<!-- Hero с новым УТП -->
+<section style="padding-top: 20px; border-bottom: none;">
+    <div class="container hero">
+        <div class="hero-badge"><i class="fas fa-dumbbell"></i> Уфа, Черниковка · Приватные залы 24/7</div>
+        <h1>Один зал. <span class="highlight">Один час.</span><br> Никого, кроме тебя.</h1>
+        <div class="new-utp">Твоя территория. Твои правила. Никаких компромиссов.</div>
+        <p>Полностью оснащённый тренажёрный зал в твоём полном распоряжении. Ни очередей, ни посторонних, ни навязанных тренеров. Только ты и железо.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="#booking" class="btn">Захватить зал →</a>
+            <a href="#prices" class="btn btn-outline">от 700 ₽ / час</a>
+        </div>
+        <div class="small-text" style="margin-top: 32px;"><i class="fas fa-mobile-alt"></i> Умный замок · Доступ по смартфону · Ежедневная уборка</div>
+    </div>
+</section>
+
+<!-- Проблемы + решение -->
+<section id="about">
+    <div class="container">
+        <div class="section-title">Почему <span>Private Gym</span></div>
+        <div class="cards-3">
+            <div class="card"><i class="fas fa-user-secret"></i><h3>Нет приватности</h3><p>Стеснение, взгляды, дискомфорт → <strong class="accent-text">Весь зал только твой</strong></p></div>
+            <div class="card"><i class="fas fa-hourglass-half"></i><h3>Очереди</h3><p>Теряешь время, ждёшь тренажёр → <strong class="accent-text">Всё оборудование свободно</strong></p></div>
+            <div class="card"><i class="fas fa-user-tag"></i><h3>Навязчивый сервис</h3><p>Тренеры лезут с программами → <strong class="accent-text">Абсолютный покой</strong></p></div>
+        </div>
+        <div style="margin-top: 48px; background: #0a0a0a; border-radius: 28px; padding: 32px; text-align: center; border-left: 6px solid var(--accent);">
+            <p style="font-size: 1.2rem;">В Уфе не было зала, который можно арендовать целиком для силовой тренировки. <strong class="accent-text">Private Gym — первое и единственное решение.</strong></p>
+        </div>
+    </div>
+</section>
+
+<!-- Как работает -->
+<section id="how-it-works" class="section-bg-dark">
+    <div class="container">
+        <div class="section-title">Как это <span>работает</span></div>
+        <div class="steps">
+            <div class="step-item"><div class="step-num">1</div><h3>Выбрал время</h3><p>В приложении или на сайте</p></div>
+            <div class="step-item"><div class="step-num">2</div><h3>Оплатил час</h3><p>Без абонемента</p></div>
+            <div class="step-item"><div class="step-num">3</div><h3>Цифровой ключ</h3><p>Смартфон открывает дверь</p></div>
+            <div class="step-item"><div class="step-num">4</div><h3>Тренировка</h3><p>В полной изоляции, убираешь за собой</p></div>
+        </div>
+        <p style="text-align: center; margin-top: 45px;"><i class="fas fa-camera"></i> Видеонаблюдение только в коридоре (внутри зала — приватность) · Клининг после каждого</p>
+    </div>
+</section>
+
+<!-- Оборудование - переработано -->
+<section>
+    <div class="container">
+        <div class="section-title">Оснащение <span>по уму</span></div>
+        <div class="equipment-grid">
+            <div class="equip-card"><div class="equip-icon"><i class="fas fa-dumbbell"></i></div><h4>Силовая база</h4><p>Рама, штанга, блины до 150 кг, стойки для приседаний</p></div>
+            <div class="equip-card"><div class="equip-icon"><i class="fas fa-weight-hanging"></i></div><h4>Гантели 2-50 кг</h4><p>Полный ряд, стойка, удобная эргономика</p></div>
+            <div class="equip-card"><div class="equip-icon"><i class="fas fa-chair"></i></div><h4>Скамьи для жима</h4><p>Горизонтальная + наклонная, регулировка</p></div>
+            <div class="equip-card"><div class="equip-icon"><i class="fas fa-heartbeat"></i></div><h4>Кардио</h4><p>Беговая дорожка или эллипс, контроль пульса</p></div>
+            <div class="equip-card"><div class="equip-icon"><i class="fas fa-toilet"></i></div><h4>Раздевалка + душ</h4><p>Личное пространство, чистота, гигиена</p></div>
+            <div class="equip-card"><div class="equip-icon"><i class="fas fa-wind"></i></div><h4>Кондиционер + Wi-Fi</h4><p>Комфорт, зеркала, своя атмосфера</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Цены -->
+<section id="prices">
+    <div class="container">
+        <div class="section-title">Цены без <span>скрытых платежей</span></div>
+        <div class="price-row">
+            <div class="price-card"><h3>Разово</h3><div class="price">700 ₽</div><small>час · B2C</small><p style="margin-top: 15px;">Полная приватность</p></div>
+            <div class="price-card"><h3>5 часов</h3><div class="price">3 200 ₽</div><small>экономия −8%</small><p>абонемент на 5 занятий</p></div>
+            <div class="price-card"><h3>10 часов</h3><div class="price">6 000 ₽</div><small>экономия −14%</small><p>гибкое бронирование</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- B2B тренерам -->
+<section id="b2b">
+    <div class="container">
+        <div class="b2b-block">
+            <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: space-between;">
+                <div><i class="fas fa-chalkboard-user" style="font-size: 54px; color: var(--accent);"></i></div>
+                <div style="flex:2"><h2 style="font-size: 1.9rem; font-family: 'Oswald';">Для тренеров (B2B)</h2>
+                <p style="margin: 15px 0; font-size: 1.05rem;">Арендуй зал для занятий со своими клиентами. Долгосрочное бронирование, полностью оснащённое пространство.</p>
+                <p><strong>Спеццена:</strong> <span class="accent-text" style="font-size: 1.8rem; font-weight:800;">550 ₽/час</span></p>
+                <a href="#booking" class="btn" style="margin-top: 15px; display: inline-block;">Стать партнёром →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Преимущества -->
+<section class="section-bg-dark">
+    <div class="container">
+        <div class="section-title">Фитнес без <span>правил</span></div>
+        <div class="fact-stats">
+            <div class="fact-item"><div class="fact-number">24/7</div> Круглосуточно</div>
+            <div class="fact-item"><div class="fact-number">40–70 м²</div> Твоё пространство</div>
+            <div class="fact-item"><div class="fact-number">Smart Lock</div> Доступ с телефона</div>
+            <div class="fact-item"><div class="fact-number">Без абонемента</div> Плати за час</div>
+        </div>
+    </div>
+</section>
+
+<!-- Адрес: Черниковка, ул. Мира -->
+<section>
+    <div class="container">
+        <div class="section-title">Локация: <span>Черниковка</span></div>
+        <div class="map-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <p style="margin: 15px 0; font-size: 1.4rem; font-weight: 600;">г. Уфа, Черниковка, ул. Мира, 42</p>
+            <p>🚗 Свободная парковка · Остановка «ДК им. Калинина» в 2 минутах · Умный замок</p>
+            <div class="small-text" style="margin-top: 20px;"><i class="fab fa-telegram"></i> Точная схема проезда после бронирования</div>
+        </div>
+    </div>
+</section>
+
+<!-- Форма бронирования -->
+<section id="booking">
+    <div class="container">
+        <div class="section-title">Забронируй <span>свой час</span></div>
+        <form action="#" method="post">
+            <input type="text" placeholder="Твоё имя" required>
+            <input type="tel" placeholder="Телефон / Telegram" required>
+            <input type="datetime-local" style="color-scheme: dark;">
+            <select>
+                <option>1 час (700 ₽)</option>
+                <option>2 часа (1 400 ₽)</option>
+                <option>Абонемент 5 часов (3 200 ₽)</option>
+                <option>Абонемент 10 часов (6 000 ₽)</option>
+                <option>B2B час (550 ₽/ч)</option>
+            </select>
+            <button type="submit" class="btn" style="width: 100%;">Забронировать зал</button>
+            <p class="small-text" style="margin-top: 20px; text-align: center;">Свяжемся в течение 5 минут или отправим ссылку на оплату. Доступ через приложение.</p>
+        </form>
+        <div style="text-align: center; margin-top: 40px;">
+            <p><i class="fab fa-telegram"></i> Поддержка: <strong>@private_gym_ufa</strong> (ответ до 10 мин)</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer с логотипом -->
+<footer>
+    <div class="container">
+        <div style="display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; margin-bottom: 30px;">
+            <a href="#"><i class="fab fa-vk"></i> VK</a>
+            <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
+            <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 24px;">
+            <div class="logo-icon" style="width: 40px; height: 40px;"><i class="fas fa-dumbbell"></i></div>
+            <span style="font-weight: 800; font-size: 1.4rem;">PRIVATE GYM</span>
+        </div>
+        <p>© 2026 Private Gym — персональные залы в Уфе. Арендуй зал целиком без очередей и свидетелей.</p>
+        <p class="small-text" style="margin-top: 12px;">Умный доступ · Почасовая аренда от 700 ₽ · B2B для тренеров</p>
+    </div>
+</footer>
+
+<div class="floating-btn">
+    <a href="#booking" class="btn"><i class="fas fa-calendar-check"></i> Забронировать</a>
+</div>
+</body>
+</html>
